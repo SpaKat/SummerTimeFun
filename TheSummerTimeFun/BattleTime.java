@@ -15,14 +15,14 @@ public class BattleTime extends Thread{
 		// starting 4 seconds
 		serialComm.Send(0);
 		Date startintro = new Date();
-		while (time <4 && running) {
+		while (time <=6 && running) {
 			//System.out.println( this.getName() + "  " + this.getId()   );
 			Date end = new Date();
 			time = (int)((end.getTime() - startintro.getTime()) / 1000);
-			if(time<2) {
+			if(time % 2 == 1) {
 				serialComm.Send(1);
 			}else {
-				serialComm.Send(2);
+				serialComm.Send(3);
 			}
 			try {
 				Thread.sleep(1);
@@ -33,6 +33,7 @@ public class BattleTime extends Thread{
 		}
 		// 2 minutes 
 		Date start = new Date();
+		serialComm.Send(2);
 		while (time<120 && running) {
 			//System.out.println( this.getName() + "  " + this.getId()   );
 			Date end = new Date();

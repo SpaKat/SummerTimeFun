@@ -37,6 +37,9 @@ public class BattleCommards extends VBox {
 				timer = new BattleTime(this.serialComm);
 				KeyFrame keyframe = new KeyFrame(Duration.millis(100), e -> {
 					TheTime.setText(timer.toString());
+					if(!timer.isAlive()) {
+						resetBattle.fire();
+					}
 				});
 				timeline.getKeyFrames().clear();
 				timeline.getKeyFrames().add(keyframe);

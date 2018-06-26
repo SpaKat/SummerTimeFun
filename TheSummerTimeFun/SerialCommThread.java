@@ -26,7 +26,7 @@ public class SerialCommThread extends Thread {
 				out.flush();
 				out.write(sendInt);
 				try {
-					Thread.sleep(300);
+					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
