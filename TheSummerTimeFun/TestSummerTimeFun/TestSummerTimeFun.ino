@@ -8,52 +8,81 @@
 
 // Which pin on the Arduino is connected to the NeoPixels?
 // On a Trinket or Gemma we suggest changing this to 1
-#define PIN            6
+#define SIDEPIN           6
+#define POLEPIN            7
 
 // How many NeoPixels are attached to the Arduino?
-#define NUMPIXELS      56
-
+#define SIDEPIXELS     14
+#define POLEPIXELS     21
 // When we setup the NeoPixel library, we tell it how many pixels, and which pin to use to send signals.
 // Note that for older NeoPixel strips you might need to change the third parameter--see the strandtest
 // example for more information on possible values.
-Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel sidePixels = Adafruit_NeoPixel(SIDEPIXELS, SIDEPIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel polePixels = Adafruit_NeoPixel(POLEPIXELS, POLEPIN, NEO_GRB + NEO_KHZ800);
 
-int delayval = 500; // delay for half a second
-int color;
 void setup() {
-  // This is for Trinket 5V 16MHz, you can remove these three lines if you are not using a Trinket
-#if defined (__AVR_ATtiny85__)
-  if (F_CPU == 16000000) clock_prescale_set(clock_div_1);
-#endif
-  // End of trinket special code
   Serial.begin(9600);
-  pixels.begin(); // This initializes the NeoPixel library.
+  sidePixels.begin(); // This initializes the NeoPixel library.
+  polePixels.begin();
+  delay(100);
+  
 }
 
 void loop() {
 
-  // For a set of NeoPixels the first NeoPixel is 0, second is 1, all the way up to the count of pixels minus one.
- color = Serial.read();
-  for(int i=0;i<NUMPIXELS;i++)
+int color = Serial.read();
+int i;
+
+  for(i=0;i<POLEPIXELS;i++)
   {
     // pixels.Color takes RGB values, from 0,0,0 up to 255,255,255
    
     switch(color)
     {
       case 0:
-         pixels.setPixelColor(i, pixels.Color(150,0,0)); // Moderately bright red color.
+         polePixels.setPixelColor(i, polePixels.Color(75,0,0)); // Moderately bright red color.
         break;
       case 1:
-        pixels.setPixelColor(i, pixels.Color(150,150,0)); // Moderately bright yellow color.
+        polePixels.setPixelColor(i, polePixels.Color(75,75,0)); // Moderately bright yellow color.
         break;
       case 2:
-        pixels.setPixelColor(i, pixels.Color(0,150,0)); // Moderately bright green color.
+        polePixels.setPixelColor(i, polePixels.Color(0,75,0)); // Moderately bright green color.
         break;
        case 3:
-        pixels.setPixelColor(i, pixels.Color(0,0,0)); // Moderately bright blank color.
+        polePixels.setPixelColor(i, polePixels.Color(0,0,0)); // Moderately bright blank color.
         break;
     }
-  }  
-  pixels.show(); // This sends the updated pixel color to the hardware
+    
+   }
+
+ polePixels.show(); // This sends the updated pixel color to the hardware
+
+for(i=0;i<SIDEPIXELS;i++)
+  {
+    // pixels.Color takes RGB values, from 0,0,0 up to 255,255,255
+   
+    switch(color)
+    {
+      case 0:
+         sidePixels.setPixelColor(i, sidePixels.Color(75,0,0)); // Moderately bright red color.
+        break;
+      case 1:
+        sidePixels.setPixelColor(i, sidePixels.Color(75,75,0)); // Moderately bright yellow color.
+        break;
+      case 2:
+        sidePixels.setPixelColor(i, sidePixels.Color(0,75,0)); // Moderately bright green color.
+        break;
+       case 3:
+        sidePixels.setPixelColor(i, sidePixels.Color(0,0,0)); // Moderately bright blank color.
+        break;
+    }
+    
+   }
+
+ sidePixels.show(); // This sends the updated pixel color to the hardware
+     
   delay(50); // Delay for a period of time (in milliseconds).
+ 
 }
+
+

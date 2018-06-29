@@ -1,4 +1,5 @@
 
+import java.io.InputStream;
 import java.io.OutputStream;
 
 import com.fazecast.jSerialComm.SerialPort;
@@ -15,14 +16,14 @@ public class SerialCommThread extends Thread {
 	}
 	@Override
 	public void run() {
-		
+
 		while(running) {
-			//	InputStream in = serialPort.getInputStream();
+			InputStream in = serialPort.getInputStream();
 			OutputStream out = serialPort.getOutputStream();
 			try {
-				//	if(in.available()>2) {
-				//	System.out.println(in.read());
-				//	}
+				if(in.available()>2) {
+					System.out.println("SAW:" + in.read());
+				}
 				out.flush();
 				out.write(sendInt);
 				try {
@@ -35,9 +36,9 @@ public class SerialCommThread extends Thread {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		
+
 		}
-		
+
 	}
 	@Override
 	public void interrupt() {

@@ -15,12 +15,12 @@ public class BattleTime extends Thread{
 		// starting 4 seconds
 		serialComm.Send(0);
 		Date startintro = new Date();
-		int localTime = 0;
-		while (localTime <=6 && running) {
+		int countTime = 6;
+		while (time >=0 && running) {
 			//System.out.println( this.getName() + "  " + this.getId()   );
 			Date end = new Date();
-			localTime = (int)((end.getTime() - startintro.getTime()) / 1000);
-			if(localTime % 2 == 1) {
+			time = (int)(countTime-((end.getTime() - startintro.getTime()) / 1000));
+			if(time % 2 == 1) {
 				serialComm.Send(1);
 			}else {
 				serialComm.Send(3);
@@ -28,7 +28,7 @@ public class BattleTime extends Thread{
 			try {
 				Thread.sleep(1);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				serialComm.Send(0);
 				e.printStackTrace();
 			}
 		}
@@ -42,7 +42,7 @@ public class BattleTime extends Thread{
 			try {
 				Thread.sleep(1);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				serialComm.Send(0);
 				e.printStackTrace();
 			}
 		}

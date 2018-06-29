@@ -25,7 +25,10 @@ public class BattleCommards extends VBox {
 		Button resetBattle = new Button("Reset Battle");
 		resetBattle.setDisable(true);
 		Text TheTime = new Text("00:00");
-		TheTime.setFont(new Font(30));
+		TheTime.setStyle("-fx-font-family: 'Playbill';"
+				+ "-fx-font-size: 500;"
+				+ "-fx-fill: 'blue';"
+				+ "");
 		serialComm = s;
 		//------------------------------------------------------------------------------------------//
 		timeline.setCycleCount(Timeline.INDEFINITE);
@@ -66,7 +69,7 @@ public class BattleCommards extends VBox {
 		HBox timePane = new HBox(TheTime);
 		timePane.setAlignment(Pos.CENTER);
 		HBox keyPane = new HBox();
-		Text ketText = new Text("0 - stop \n1 - wait\n2 - Fight!");
+		Text ketText = new Text(/*"0 - stop \n1 - wait\n2 - Fight!"*/);
 		keyPane.setAlignment(Pos.CENTER);
 		keyPane.getChildren().add(ketText);
 		getChildren().addAll(timePane,battleTime,keyPane);

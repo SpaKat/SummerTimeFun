@@ -19,7 +19,7 @@ public class SerialPortControl extends VBox {
 		TextField enterComport = new TextField();
 
 		HBox askComprtHbox = new HBox(50);
-		askComprtHbox.setAlignment(Pos.BASELINE_LEFT);
+		askComprtHbox.setAlignment(Pos.CENTER);
 		askComprtHbox.getChildren().addAll(askComport,enterComport);
 		//------------------------------------------------------------------------------------------//
 		ComboBox<String> allComports = new ComboBox<String>();

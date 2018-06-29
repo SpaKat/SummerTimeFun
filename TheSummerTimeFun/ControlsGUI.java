@@ -1,19 +1,20 @@
 import javafx.geometry.Pos;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
 
-public class ControlsGUI extends VBox {
+public class ControlsGUI extends BorderPane {
 	private SerialPortControl serialPortContorl;
 	private BattleCommards battleCommands;
 	public ControlsGUI() {
 		setStyle("-fx-background-color: 'pink'");
-		setAlignment(Pos.CENTER);
+	//	setAlignment(currentlyProcessedChild, Pos.CENTER);
 		
 		SerialComm serialComm = new SerialComm();
 		serialPortContorl = new SerialPortControl(serialComm); 
 		battleCommands = new BattleCommards(serialComm);
 		
+	setBottom(	serialPortContorl);
+	setCenter(battleCommands);
 		
-		getChildren().addAll(serialPortContorl,battleCommands);
 	}
 	public void stopThreads() {
 		serialPortContorl.stopThread();
