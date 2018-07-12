@@ -26,7 +26,7 @@ public class BattleCommards extends VBox {
 		resetBattle.setDisable(true);
 		Text TheTime = new Text("00:00");
 		TheTime.setStyle("-fx-font-family: 'Playbill';"
-				+ "-fx-font-size: 900;"
+				+ "-fx-font-size: 500;"
 				+ "-fx-fill: 'blue';"
 				+ "-fx-stroke: black;"
 				+ "-fx-stroke-width: 5;");

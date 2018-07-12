@@ -35,7 +35,7 @@ public class BattleTime extends Thread{
 		// 2 minutes 
 		Date start = new Date();
 		serialComm.Send(2);
-		while (time<120 && running) {
+		while (time<90 && running) {
 			//System.out.println( this.getName() + "  " + this.getId()   );
 			Date end = new Date();
 			time = (int)((end.getTime() - start.getTime()) / 1000);
